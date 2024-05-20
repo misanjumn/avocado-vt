@@ -92,7 +92,7 @@ to run the steps below manually.
     16:11:14 INFO | 1 - Updating all test providers
     16:11:14 INFO | Fetching git [REP 'git://github.com/autotest/tp-qemu.git' BRANCH 'master'] -> /var/tmp/autotest/client/tests/virt/test-providers.d/downloads/io-github-autotest-qemu
     16:11:17 INFO | git commit ID is 6046958afa1ccab7f22bb1a1a73347d9c6ed3211 (no tag found)
-    16:11:17 INFO | Fetching git [REP 'git://github.com/autotest/tp-libvirt.git' BRANCH 'master'] -> /var/tmp/autotest/client/tests/virt/test-providers.d/downloads/io-github-autotest-libvirt
+    16:11:17 INFO | Fetching git [REP 'git://github.com/misanjumn/tp-libvirt.git' BRANCH 'master'] -> /var/tmp/autotest/client/tests/virt/test-providers.d/downloads/io-github-autotest-libvirt
     16:11:19 INFO | git commit ID is edc07c0c4346f9029930b062c573ff6f5433bc53 (no tag found)
     16:11:20 INFO |
     16:11:20 INFO | 2 - Checking the mandatory programs and headers
