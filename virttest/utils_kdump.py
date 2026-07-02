@@ -504,47 +504,6 @@ def get_vmcores(vm, crash_dir="/var/crash/", test=None):
 
 
 def trigger_crash(
-    vm,
-    session=None,
-    enable_sysrq_cmd="echo 1 > /proc/sys/kernel/sysrq",
-    trigger_crash_cmd="echo c > /proc/sysrq-trigger",
-    wait_time=120,
-    test=None,
-):
-    """
-    Trigger sysrq crash in guest.
-
-    Enables sysrq and triggers a kernel crash using sysrq-trigger mechanism.
-    Handles the expected shell termination after crash.
-
-    :param vm: VM object
-    :param session: Guest session (will create new if None)
-    :param enable_sysrq_cmd: Command to enable sysrq (default: echo 1 > /proc/sys/kernel/sysrq)
-    :param trigger_crash_cmd: Command to trigger crash (default: echo c > /proc/sysrq-trigger)
-    :param wait_time: Time to wait after crash trigger (default: 120 seconds)
-    :param test: Test object for fail reporting (optional)
-    :raises: TestFail if sysrq enable fails
-    """
-    LOG.info("Triggering sysrq crash in guest %s", vm.name)
-    owns_session = session is None
-    if owns_session:
-        session = vm.wait_for_login(timeout=100)
-
-    status, output = session.cmd_status_output(enable_sysrq_cmd)
-    if status:
-        session.close()
-        if test:
-            test.fail("Failed to enable sysrq in guest %s: %s" % (vm.name, output))
-        return
-
-    try:
-        session.cmd(trigger_crash_cmd)
-    except ShellProcessTerminatedError:
-        time.sleep(wait_time)
-    session.close()
-
-
-def trigger_crash_parallel(
     vms,
     enable_sysrq_cmd="echo 1 > /proc/sys/kernel/sysrq",
     trigger_crash_cmd="echo c > /proc/sysrq-trigger",
